@@ -1,0 +1,9 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<ul>
+  <li><%= link_to "In House Login", inhouse_signin_path %></li>
+  <li><%= link_to "External Login", external_signin_path  %></li>
+  <li><%= link_to "In House Register", new_inhouse_user_path %></li>
+  <li><%= link_to "External Register", new_external_user_path %></li>
+</ul>

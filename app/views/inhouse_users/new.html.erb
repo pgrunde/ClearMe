@@ -1,0 +1,26 @@
+<%= form_for @inhouse, url: inhouse_users_path do |f| %>
+  <% if @inhouse.errors.any? %>
+    <ul>
+      <% @inhouse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.submit "Join as an Inhouse Recruiter!" %>
+  </p>
+
+<% end %>
