@@ -1,0 +1,25 @@
+.f-selector {
+  width:6rem;
+  height:6rem;
+  border:2px solid black;
+  display:inline;
+}
+
+#stage {
+  width:35rem;
+  height:25rem;
+  border:2px solid black;
+  #options-form {
+    width:50%;
+    height:100%;
+    background-color: #d1f8ff;
+    #title {
+      width:15rem;
+    }
+  }
+  #display-form {
+    width:50%;
+    height:100%;
+    background-color: #ffdfe4;
+  }
+}
