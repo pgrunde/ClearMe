@@ -1,0 +1,23 @@
+<%= form_for @inhouse, url: inhouse_signin_path do |f| %>
+  <% if @inhouse.errors.any? %>
+    <ul>
+      <% @inhouse.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <ul>
+    <li>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </li>
+    <li>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </li>
+    <li>
+      <%= f.submit "Sign In" %>
+    </li>
+  </ul>
+<% end %>

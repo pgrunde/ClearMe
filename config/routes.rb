@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   get "external_signin" => "external_sessions#new", as: :external_signin
   post "external_signin" => "external_sessions#create"
   delete "external_signout" => "external_sessions#destroy", as: :external_signout
+
+  get "inh_mainpage" => "inh_mainpage#show"
+  get "ext_mainpage" => "ext_mainpage#show"
 end
