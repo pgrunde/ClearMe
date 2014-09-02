@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   delete "external_signout" => "external_sessions#destroy", as: :external_signout
 
   get "inh_mainpage" => "inh_mainpage#show"
+
+  resources :forms
+
   get "ext_mainpage" => "ext_mainpage#show"
+
 end

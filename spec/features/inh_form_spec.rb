@@ -16,6 +16,8 @@ describe "rendering the forms generator" do
   end
 
   it "in house user can view the form generator page" do
-    expect(page).to have_link "Manage Forms"
+    click_link "Manage Forms"
+    click_link "Add form"
+    expect(page).to have_content "Forms"
   end
 end
