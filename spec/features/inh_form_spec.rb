@@ -10,7 +10,7 @@ describe "rendering the forms generator" do
     fill_in "Password", with: "password"
     click_button "Join as an Inhouse Recruiter!"
     click_link "In House Login"
-    fill_in "Usexrname", with: "pgrunde"
+    fill_in "Username", with: "pgrunde"
     fill_in "Password", with: "password"
     click_button "Sign In"
     click_link "Manage Forms"
@@ -26,6 +26,19 @@ describe "rendering the forms generator" do
   it "in house user can click 'Text' to see Text options and display fill", :js => true do
     find("#text-select").click
     expect(page).to have_content "Text Input Title"
+    fill_in "title", with: "Test Title"
+    within("#display-form") do
+      expect(page).to have_content("Test Title")
+    end
+  end
+
+  it "in house user can click 'Text Area' to see Text Area options and display fill", :js => true do
+    find("#text-area").click
+    expect(page).to have_content "Text Input Title"
+    fill_in "title", with: "Test Title"
+    within("#display-form") do
+      expect(page).to have_content("Test Title")
+    end
   end
 
 end
