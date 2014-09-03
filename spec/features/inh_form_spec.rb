@@ -34,11 +34,23 @@ describe "rendering the forms generator" do
 
   it "in house user can click 'Text Area' to see Text Area options and display fill", :js => true do
     find("#text-area").click
-    expect(page).to have_content "Text Input Title"
+    expect(page).to have_content "Text Area Input Title"
     fill_in "title", with: "Test Title"
     within("#display-form") do
       expect(page).to have_content("Test Title")
     end
+  end
+
+  it "in house user can click 'checkbox-select' to see its options and display fill", :js => true do
+    find("#checkbox-select").click
+    expect(page).to have_content "Checkbox Select Title"
+    fill_in "title", with: "Test Title"
+    select '2', from: 'number'
+    fill_in "checkbox1", with: "Box 1"
+    fill_in "checkbox2", with: "Box 2"
+    within("#display-form") {expect(page).to have_content("Box 1")}
+    within("#display-form") {expect(page).to have_content("Box 2")}
+    within("#display-form") {expect(page).to have_content("Test Title")}
   end
 
 end
