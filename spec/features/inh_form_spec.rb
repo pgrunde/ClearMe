@@ -57,11 +57,20 @@ describe "rendering the forms generator" do
     find("#radio-select").click
     fill_in "title", with: "Test Title"
     select '2', from: 'radio-count'
-    fill_in "radio-text:1", with: "Box 1"
-    fill_in "radio-text:2", with: "Box 2"
-    within("#display-form") {expect(page).to have_content("Box 1")}
-    within("#display-form") {expect(page).to have_content("Box 2")}
+    fill_in "radio-text:1", with: "Radio 1"
+    fill_in "radio-text:2", with: "Radio 2"
+    within("#display-form") {expect(page).to have_content("Radio 1")}
+    within("#display-form") {expect(page).to have_content("Radio 2")}
     within("#display-form") {expect(page).to have_content("Test Title")}
   end
+
+    it "in house user can click 'date-select' to see its options and display fill", :js => true do
+      find("#date-select").click
+      expect(page).to have_content "Date Select Title"
+      fill_in "title", with: "Test Title"
+      within("#display-form") do
+        expect(page).to have_content("Test Title")
+      end
+    end
 
 end

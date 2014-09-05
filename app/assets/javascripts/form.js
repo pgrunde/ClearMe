@@ -22,6 +22,11 @@ $(document).ready(function(){
     buildStage("radio")
   });
 
+  $('#date-select').on("click", function(){
+    $('#options-form, #display-form').empty();
+    buildStage("date")
+  });
+
   // ** buildStage handles the construction of the stage based on clicked input selectors
 
   var buildStage = function(input){
@@ -45,8 +50,8 @@ $(document).ready(function(){
       case "text-area":
         $('#options-form').append(
             "<form>" +
-            "<label for='title'>Text Area Input Title</label><br>" +
-            "<input id='title' type='text'>" +
+              "<label for='title'>Text Area Input Title</label><br>" +
+              "<input id='title' type='text'>" +
             "</form>"
         );
         $('#display-form').append(
@@ -62,10 +67,10 @@ $(document).ready(function(){
         }
         $('#options-form').append(
             "<form>" +
-            "<label for='title'>Checkbox Select Title</label><br>" +
-            "<input id='title' type='text' value='Example'>" +
-            "<label for='chkbx-count'>Number of checkboxes:</label>" +
-            "<select id='chkbx-count'>" + selectCount + "</select>" +
+              "<label for='title'>Checkbox Select Title</label><br>" +
+              "<input id='title' type='text' value='Example'>" +
+              "<label for='chkbx-count'>Number of checkboxes:</label>" +
+              "<select id='chkbx-count'>" + selectCount + "</select>" +
             "</form><div id='multi-options'></div>"
         );
         $('#display-form').append(
@@ -81,15 +86,30 @@ $(document).ready(function(){
         }
         $('#options-form').append(
             "<form>" +
-            "<label for='title'>Radio Select Title</label><br>" +
-            "<input id='title' type='text' value='Example'>" +
-            "<label for='radio-count'>Number of radio buttons:</label>" +
-            "<select id='radio-count'>" + selectCount + "</select>" +
+              "<label for='title'>Radio Select Title</label><br>" +
+              "<input id='title' type='text' value='Example'>" +
+              "<label for='radio-count'>Number of radio buttons:</label>" +
+              "<select id='radio-count'>" + selectCount + "</select>" +
             "</form><div id='multi-options'></div>"
         );
         $('#display-form').append(
             "<label for='display-title' id='title-label'>Example</label><br>" +
             "<div id='radio-container'></div>"
+        );
+        break;
+
+      case "date":
+        $('#options-form').append(
+          "<form>" +
+            "<label for='title'>Date Select Title</label><br>" +
+            "<input id='title' type='text'>" +
+          "</form>"
+        );
+        $('#display-form').append(
+          "<form>" +
+            "<label for='display-title' id='title-label'></label><br>" +
+            "<input id='display-title' type='text' value='mm/dd/yyyy' disabled>" +
+          "</form>"
         );
         break;
 
