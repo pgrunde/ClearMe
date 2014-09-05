@@ -23,3 +23,13 @@
     background-color: #ffdfe4;
   }
 }
+
+div[id*='chkbx-text-result-'], div[id*='radio-text-result-']  {
+  display:inline;
+}
+
+#display-form {
+  input {
+    display:inline;
+  }
+}

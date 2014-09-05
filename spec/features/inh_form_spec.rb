@@ -45,9 +45,20 @@ describe "rendering the forms generator" do
     find("#checkbox-select").click
     expect(page).to have_content "Checkbox Select Title"
     fill_in "title", with: "Test Title"
-    select '2', from: 'number'
-    fill_in "checkbox1", with: "Box 1"
-    fill_in "checkbox2", with: "Box 2"
+    select '2', from: 'chkbx-count'
+    fill_in "chkbx-text:1", with: "Box 1"
+    fill_in "chkbx-text:2", with: "Box 2"
+    within("#display-form") {expect(page).to have_content("Box 1")}
+    within("#display-form") {expect(page).to have_content("Box 2")}
+    within("#display-form") {expect(page).to have_content("Test Title")}
+  end
+
+  it "in house user can click 'radio-select' to see its options and display fill", :js => true do
+    find("#radio-select").click
+    fill_in "title", with: "Test Title"
+    select '2', from: 'radio-count'
+    fill_in "radio-text:1", with: "Box 1"
+    fill_in "radio-text:2", with: "Box 2"
     within("#display-form") {expect(page).to have_content("Box 1")}
     within("#display-form") {expect(page).to have_content("Box 2")}
     within("#display-form") {expect(page).to have_content("Test Title")}
