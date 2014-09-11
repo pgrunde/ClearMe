@@ -252,18 +252,13 @@ $(document).ready(function(){
     switch(stagedInput){
       case "text":
         titleText = $("#title").val();
-        ffJson.push( {type: "text", titleText: titleText} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
+        ffJson.push( {type: "text", title: titleText} );
         break;
 
       case "text-area":
         titleText = $("#title").val();
         ffJson.push( {type: "text-area", title: titleText} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
+        console.log(ffJson);
         break;
 
       case "checkbox":
@@ -275,9 +270,6 @@ $(document).ready(function(){
           optionTitles.push(labelValue)
         }
         ffJson.push( {type: "checkbox", title: titleText, options: optionTitles} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
         break;
 
       case "radio":
@@ -289,17 +281,11 @@ $(document).ready(function(){
           optionTitles.push(labelValue)
         }
         ffJson.push( {type: "radio", title: titleText, options: optionTitles} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
         break;
 
       case "date":
         titleText = $("#title").val();
         ffJson.push( {type: "date", title: titleText} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
         break;
 
       case "dropdown":
@@ -311,20 +297,17 @@ $(document).ready(function(){
           optionTitles.push(labelValue);
         }
         ffJson.push( {type: "dropdown", title: titleText, options: optionTitles} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
         break;
       case "url":
         titleText = $("#title").val();
         ffJson.push( {type: "url", title: titleText} );
-        $('#options-form').empty();
-        $('#display-form').empty();
-        $('#add-to-ff h2').empty().append("Add Form Input");
         break;
 
       default:
     }
+    $('#options-form').empty();
+    $('#display-form').empty();
+    $('#add-to-ff h2').empty().append("Add Form Input");
     renderFinalForm(ffJson)
   };
 
@@ -335,30 +318,57 @@ $(document).ready(function(){
       switch(formInput.type){
 
         case "text":
-          finalForm = finalForm + "<label for='title'>"+ formInput.titleText +"</label><br>" +
-                                  "<input id='title-" + idCount.toString() + "' type='text'>";
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>" +
+                                  "<input id='ff-title-" + idCount.toString() + "' type='text'><br/>";
+          finalForm = finalForm + "<br/>";
           break;
 
         case "text-area":
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>" +
+            "<textarea id='ff-title-" + idCount.toString() + "'></textarea><br/>";
+          finalForm = finalForm + "<br/>";
           break;
 
         case "checkbox":
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>";
+          formInput.options.forEach(function(name){
+            finalForm = finalForm + "<input type='checkbox' id='ff-chkbx-" + name + "'>" + name + "<br/>"
+          });
+          finalForm = finalForm + "<br/>";
           break;
 
         case "radio":
+          finalForm = finalForm + "<form><label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>";
+          formInput.options.forEach(function(name){
+            finalForm = finalForm + "<input type='radio' name='ff-radio-" + idCount.toString() + "'>" + name + "<br/>"
+          });
+          finalForm = finalForm + "</form><br/>";
           break;
 
         case "date":
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>" +
+            "<input id='ff-title-" + idCount.toString() + "' type='text' value='dd/mm/yyyy'><br/>";
+          finalForm = finalForm + "<br/>";
           break;
 
         case "dropdown":
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br><select id='" + formInput.titleText + "'>";
+          formInput.options.forEach(function(name){
+            finalForm = finalForm + "<option value='" + name + "'>" + name + "</option>"
+          });
+          finalForm = finalForm + "</select><br/>";
           break;
 
         case "url":
+          finalForm = finalForm + "<label for='ff-title-"+ idCount.toString() +"'>"+ formInput.title +"</label><br>" +
+            "<input id='ff-title-" + idCount.toString() + "' type='text' value='http://'><br/>";
+          finalForm = finalForm + "<br/>";
           break;
 
         default:
       }
+      idCount += 1;
+      stagedInput = "";
     });
     $("#final-form").empty().append(finalForm)
   }
