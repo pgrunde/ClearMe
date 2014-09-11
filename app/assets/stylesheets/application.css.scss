@@ -17,18 +17,18 @@
 *, *:before, *:after {box-sizing: border-box;}
 
 .clearfix {
-  clear: both;
-  zoom:1;
-  &:before, &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
-  }
-  &:after {
-    clear: both;
-  }
-}
+   clear: both;
+   zoom:1;
+   &:before, &:after {
+     content: "\0020";
+     display: block;
+     height: 0;
+     overflow: hidden;
+   }
+   &:after {
+     clear: both;
+   }
+ }
 
 .right {
   position:relative;

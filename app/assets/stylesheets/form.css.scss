@@ -3,6 +3,9 @@
   height:6rem;
   border:2px solid black;
   display:inline;
+  border-radius: 1rem;
+  padding-right:0.35rem;
+  padding-left:0.35rem;
 }
 
 #stage {
@@ -32,4 +35,22 @@ div[id*='chkbx-text-result-'], div[id*='radio-text-result-']  {
   input {
     display:inline;
   }
+}
+
+#add-to-ff {
+  border:2px solid black;
+  width: 35rem;
+  height:4rem;
+  h2 {
+    margin-top:1rem;
+    text-align:center;
+  }
+}
+
+#ff-article {
+  width:35rem;
+  height:30rem;
+  border:2px solid black;
+  border-radius: 1rem;
+  margin-right:15rem;
 }

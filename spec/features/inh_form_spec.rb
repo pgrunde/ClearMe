@@ -1,7 +1,16 @@
 require 'rails_helper'
 require 'capybara/rails'
 
+
+
 describe "rendering the forms generator" do
+
+  @inhouse_user = FactoryGirl.create(:inhouse_user)
+
+  p @inhouse_user.email
+  p @inhouse_user.username
+  p @inhouse_user.password
+
   before :each do
     visit "/"
     click_link "In House Register"
@@ -46,8 +55,8 @@ describe "rendering the forms generator" do
     expect(page).to have_content "Checkbox Select Title"
     fill_in "title", with: "Test Title"
     select '2', from: 'chkbx-count'
-    fill_in "chkbx-text:1", with: "Box 1"
-    fill_in "chkbx-text:2", with: "Box 2"
+    fill_in "chkbx-text-input:1", with: "Box 1"
+    fill_in "chkbx-text-input:2", with: "Box 2"
     within("#display-form") {expect(page).to have_content("Box 1")}
     within("#display-form") {expect(page).to have_content("Box 2")}
     within("#display-form") {expect(page).to have_content("Test Title")}
@@ -72,5 +81,24 @@ describe "rendering the forms generator" do
         expect(page).to have_content("Test Title")
       end
     end
+
+  it "in house user can click 'dropdown-select' to see its options and display fill", :js => true do
+    find("#dropdown-select").click
+    expect(page).to have_content "Dropdown Select Title"
+    fill_in "title", with: "Test Title"
+    select '2', from: 'dropdown-count'
+    fill_in "dropdown-text:1", with: "down 1"
+    fill_in "dropdown-text:2", with: "down 2"
+    within("#display-form") {expect(page).to have_content("down 1")}
+    within("#display-form") {expect(page).to have_content("down 2")}
+    within("#display-form") {expect(page).to have_content("Test Title")}
+  end
+
+  it "in house user can click 'website' to see options and display fill", :js => true do
+    find("#url-select").click
+    expect(page).to have_content "Website Title"
+    fill_in "title", with: "Test Title"
+    within("#display-form") {expect(page).to have_content("Test Title")}
+  end
 
 end

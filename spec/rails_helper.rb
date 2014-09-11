@@ -30,6 +30,12 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryGirl.lint
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
