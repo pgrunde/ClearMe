@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "inh_mainpage" => "inh_mainpage#show"
 
   resources :forms
+  get "form_json_fetch" => "forms#fetch_json", as: :fetch_form
 
   get "ext_mainpage" => "ext_mainpage#show"
 

@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_inhouse_user
-    InhouseUser.find(id: session[:inhouse_user_id])
+    InhouseUser.find(session[:inhouse_user_id])
   end
   def current_external_user
-    ExternalUser.find(id: session[:external_user_id])
+    ExternalUser.find(session[:external_user_id])
   end
 end

@@ -3,6 +3,31 @@ $(document).ready(function(){
   var stagedInput = "";
   var ffJson = [];
 
+  var getFormJson = function(){
+    var formJson = $.getJSON("/form_json_fetch");
+    formJson.success(function(jsonResponse){
+      renderFinalForm(jsonResponse)
+    });
+  };
+
+  var createForm = function (){
+    var saveName = $("#save").val();
+    var theJson = JSON.stringify(ffJson);
+//    $.ajax({
+//      type: "POST",
+//      url: "/forms",
+//      data: {title: saveName, json: theJson }
+//    })
+    $.post("/forms", {title: saveName, json: theJson },
+      function() {
+        window.location.replace("/forms");
+      });
+  };
+
+  $(".save-button").on("click", function(){
+    createForm()
+  });
+
   // ** these call buildStage based on input selector clicks
 
   $('#text-select').on("click", function(){
