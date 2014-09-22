@@ -12,6 +12,12 @@ class FormsController < ApplicationController
 
   def edit
     @form = Form.find(params[:id])
+    gon.formdata = @form
+    respond_to do |format|
+      format.html
+      format.json {render json: @form}
+    end
+
   end
 
   def create
@@ -21,13 +27,14 @@ class FormsController < ApplicationController
   end
 
   def update
-    form = Form.find_by(title: params["title"], inh_user_id: current_inhouse_user.id)
+    form = Form.find_by(id: params["id"])
     if form
       form.json = params["json"]
       form.title = params["title"]
       form.save
     end
-    redirect_to forms_path
+
+    render :nothing => true
   end
 
   def destroy

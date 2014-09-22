@@ -13,10 +13,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'factory_girl'
 gem 'factory_girl_rails', "~> 4.0"
+gem 'gon'
+gem "font-awesome-rails"
 
 group :development, :test do
-  gem "rspec-rails"
+  gem 'rack_session_access'
   gem 'rspec-collection_matchers'
+  gem "rspec-rails"
   gem "capybara"
   gem "database_cleaner"
   gem "selenium-webdriver"

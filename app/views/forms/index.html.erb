@@ -1,1 +1,7 @@
-<%= link_to "Add form", new_form_path %>
+<h1>Click on a form to edit</h1><%= link_to "Add form", new_form_path %><br/>
+
+<ul>
+  <% @forms.each do |form| %>
+    <li><%= link_to form.title, edit_form_path(form) %></li>
+  <% end %>
+</ul>

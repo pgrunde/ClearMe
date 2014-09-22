@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_inhouse_user
-    InhouseUser.find(session[:inhouse_user_id])
+    if session[:inhouse_user_id]
+      InhouseUser.find(session[:inhouse_user_id])
+    else
+      false
+    end
+
   end
   def current_external_user
     ExternalUser.find(session[:external_user_id])

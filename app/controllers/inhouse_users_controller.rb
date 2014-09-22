@@ -1,7 +1,7 @@
 class InhouseUsersController < ApplicationController
 
-  skip_before_filter :ensure_authed_external_user
-  skip_before_filter :ensure_authed_inhouse_user
+  # skip_before_filter :ensure_authed_external_user
+  # skip_before_filter :ensure_authed_inhouse_user
 
   def new
     @inhouse = InhouseUser.new
