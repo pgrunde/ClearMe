@@ -2,6 +2,6 @@
 <%= link_to "Add New Job", new_job_path %>
 <ul>
   <% @jobs.each do |job| %>
-    <li><%= job.title %></li>
+    <li><%= link_to job.title, edit_job_path(job) %><%= link_to icon('close fa-1x'), job_path(job), class: "job-delete", method: :delete %></li>
   <% end %>
 </ul>

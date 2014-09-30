@@ -104,7 +104,7 @@ describe "rendering the forms generator" do
 
 end
 
-describe "editing an existing form", :focus => true do
+describe "editing an existing form" do
   before :each do
     inhouse_user = InhouseUser.create(username: "kipperton",
                                       email: "kipper@example.com",
