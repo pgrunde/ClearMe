@@ -1,0 +1,13 @@
+<h2>Pending Requests for Contracts</h2>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<% if @inhouse %>
+  <% @inhouse.each do |inh| %>
+    <ul>
+      <li><%= inh.username %></li>
+      <li><%= inh.email %></li>
+      <li><%= link_to "Send Contract", ext_send_contract_path(inh), method: :patch %></li>
+    </ul>
+  <% end %>
+<% end %>

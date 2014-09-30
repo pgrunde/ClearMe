@@ -1,4 +1,3 @@
-<h2>Search External Recruiters</h2>
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
@@ -7,7 +6,7 @@
     <ul>
       <li><%= ext.username %></li>
       <li><%= ext.email %></li>
-      <li><%= link_to "Request Contract", inh_request_contract_path(ext), method: :post %></li>
+      <li><%= link_to "Approve Contract!" %></li>
     </ul>
   <% end %>
 <% end %>
