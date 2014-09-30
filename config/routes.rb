@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :external_users
   resources :inhouse_users
   resources :jobs
+  resources :forms
 
   get "inhouse_signin" => "inhouse_sessions#new", as: :inhouse_signin
   post "inhouse_signin" => "inhouse_sessions#create"
@@ -13,11 +14,12 @@ Rails.application.routes.draw do
   post "external_signin" => "external_sessions#create"
   delete "external_signout" => "external_sessions#destroy", as: :external_signout
 
+
+  get "inhouse_contracts" =>"inh_ext_contracts#inh_index"
+  get "search_for_ext" => "inh_ext_contracts#search_for_ext"
+  post "/search_for_ext/:id" => "inh_ext_contracts#inh_create", as: "inh_request_contract"
+
   get "inh_mainpage" => "inh_mainpage#show"
-
-  resources :forms
-  get "form_json_fetch" => "forms#fetch_json", as: :fetch_form
-
   get "ext_mainpage" => "ext_mainpage#show"
 
 end
