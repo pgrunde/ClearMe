@@ -14,9 +14,10 @@ gem 'spring',        group: :development
 gem 'factory_girl'
 gem 'factory_girl_rails', "~> 4.0"
 gem 'gon'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 4.2.0'
 
 group :development, :test do
+  gem 'launchy'
   gem 'rack_session_access'
   gem 'rspec-collection_matchers'
   gem "rspec-rails"

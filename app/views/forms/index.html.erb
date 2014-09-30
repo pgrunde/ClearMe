@@ -2,6 +2,6 @@
 
 <ul>
   <% @forms.each do |form| %>
-    <li><%= link_to form.title, edit_form_path(form) %></li>
+    <li><%= link_to form.title, edit_form_path(form) %><%= link_to icon('close fa-1x'), form_path(form), class: "form-delete", method: :delete %></li>
   <% end %>
 </ul>

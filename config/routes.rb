@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :external_users
   resources :inhouse_users
+  resources :jobs
 
   get "inhouse_signin" => "inhouse_sessions#new", as: :inhouse_signin
   post "inhouse_signin" => "inhouse_sessions#create"

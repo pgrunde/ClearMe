@@ -5,19 +5,19 @@ var renderFinalForm = function (json) {
     switch (formInput.type) {
 
       case "text":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
           "<input id='ff-title-" + idCount.toString() + "' type='text'><br/>";
         finalForm = finalForm + "<br/>";
         break;
 
       case "text-area":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
           "<textarea id='ff-title-" + idCount.toString() + "'></textarea><br/>";
         finalForm = finalForm + "<br/>";
         break;
 
       case "checkbox":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>";
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>";
         formInput.options.forEach(function (name) {
           finalForm = finalForm + "<input type='checkbox' id='ff-chkbx-" + name + "'>" + name + "<br/>"
         });
@@ -25,7 +25,7 @@ var renderFinalForm = function (json) {
         break;
 
       case "radio":
-        finalForm = finalForm + "<form><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>";
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><form><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>";
         formInput.options.forEach(function (name) {
           finalForm = finalForm + "<input type='radio' name='ff-radio-" + idCount.toString() + "'>" + name + "<br/>"
         });
@@ -33,13 +33,13 @@ var renderFinalForm = function (json) {
         break;
 
       case "date":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
           "<input id='ff-title-" + idCount.toString() + "' type='text' value='dd/mm/yyyy'><br/>";
         finalForm = finalForm + "<br/>";
         break;
 
       case "dropdown":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br><select id='" + formInput.titleText + "'>";
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br><select id='" + formInput.titleText + "'>";
         formInput.options.forEach(function (name) {
           finalForm = finalForm + "<option value='" + name + "'>" + name + "</option>"
         });
@@ -47,7 +47,7 @@ var renderFinalForm = function (json) {
         break;
 
       case "url":
-        finalForm = finalForm + "<label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
+        finalForm = finalForm + "<i class='fa fa-close fa-1x' id='removeinput-"+ idCount.toString() +"'></i><label for='ff-title-" + idCount.toString() + "'>" + formInput.title + "</label><br>" +
           "<input id='ff-title-" + idCount.toString() + "' type='text' value='http://'><br/>";
         finalForm = finalForm + "<br/>";
         break;
@@ -325,12 +325,13 @@ $(document).ready(function () {
     // handles dropdown text generation
     $(document).on("keyup", "[id^=dropdown-text]", function () {
       inputBox = $(this);
+      console.log(inputBox);
       taggedId = inputBox.attr("id").split(":")[1];
       target = "#dropdown-option-" + taggedId;
       $(target).empty().append(inputBox.val());
     });
 
-    // ** addToFinalForm takes the staged input type abd the options-form details to write to the ffJson and db
+    // ** addToFinalForm takes the staged input type and the options-form details to write to the ffJson and db
 
     $(document).on("click", "#add-to-ff", function () {
       addToFinalForm(stagedInput)
@@ -398,6 +399,15 @@ $(document).ready(function () {
       $('#add-to-ff h2').empty().append("Add Form Input");
       renderFinalForm(ffJson)
     };
+
+  // Handles deleting individual inputs already added to the final form
+
+  $(document).on("click", "[id^=removeinput]",function(){
+    var spliceId = parseInt($(this).attr("id").split("-")[1]);
+    console.log(spliceId);
+    ffJson.splice(spliceId, 1);
+    renderFinalForm(ffJson)
+  });
 
 
 });

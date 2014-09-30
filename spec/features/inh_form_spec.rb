@@ -104,7 +104,7 @@ describe "rendering the forms generator" do
 
 end
 
-describe "editing an existing form" do
+describe "editing an existing form", :focus => true do
   before :each do
     inhouse_user = InhouseUser.create(username: "kipperton",
                                       email: "kipper@example.com",
@@ -129,14 +129,30 @@ describe "editing an existing form" do
     expect(page).to have_content "Github"
   end
 
-  it "in house user can edit a form, update it, and the edit will persist", :js => true do
+  it "in house user can edit a form, update the title, and the edit will persist", :js => true do
     click_link "testing form"
     find("#text-select").click
     fill_in "title", with: "I am an edited form title"
     find("#add-to-ff").click
+    fill_in "Form Name", :with => "new form name"
+    expect(page).to have_content "I am an edited form"
+    find(".update-button").click
+    click_link "new form name"
+    expect(page).to have_content "I am an edited form title"
+  end
+
+  it "in house user can delete a created form", :js => true do
+    find(".fa-close").click
+    expect(page).to_not have_content "testing form"
+  end
+
+  it "in house user can remove a single input from an existing form and the input will not persist", :js => true do
+    click_link "testing form"
+    find("#removeinput-6").click
+    expect(page).to_not have_content "Github"
     find(".update-button").click
     click_link "testing form"
-    expect(page).to have_content "I am an edited form title"
+    expect(page).to_not have_content "Github"
   end
 
 end

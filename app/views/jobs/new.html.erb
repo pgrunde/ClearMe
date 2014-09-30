@@ -1,0 +1,31 @@
+<%= form_for @job, url: jobs_path(@job) do |f| %>
+  <% if @job.errors.any? %>
+    <ul>
+      <% @job.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </p>
+
+  <p>
+    <%= f.label :form_id, "Select Intro Form" %>
+    <%= f.select(:form_id, @user_forms.collect {|m| [m.title, m.id]}, { include_blank: "None"}) %>
+  </p>
+
+  <%= f.submit "Create New Job" %>
+<% end %>

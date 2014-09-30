@@ -38,7 +38,9 @@ class FormsController < ApplicationController
   end
 
   def destroy
-
+    form = Form.find_by(id: params["id"])
+    form.destroy
+    redirect_to forms_path
   end
 
   def fetch_json
