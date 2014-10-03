@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'capybara/rails'
 
 
-describe "in order for both users to forge a contract together", focus: true do
+describe "in order for both users to forge a contract together" do
 
   before :each do
     @inhouse_user = InhouseUser.create(username: "kipperton",
@@ -39,7 +39,7 @@ describe "in order for both users to forge a contract together", focus: true do
     page.set_rack_session(:inhouse_user_id => @inhouse_user.id)
   end
 
-  
+
 
 end
     # visit external_contracts_path

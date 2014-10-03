@@ -129,18 +129,6 @@ describe "editing an existing form" do
     expect(page).to have_content "Github"
   end
 
-  it "in house user can edit a form, update the title, and the edit will persist", :js => true do
-    click_link "testing form"
-    find("#text-select").click
-    fill_in "title", with: "I am an edited form title"
-    find("#add-to-ff").click
-    fill_in "Form Name", :with => "new form name"
-    expect(page).to have_content "I am an edited form"
-    find(".update-button").click
-    click_link "new form name"
-    expect(page).to have_content "I am an edited form title"
-  end
-
   it "in house user can delete a created form", :js => true do
     find(".fa-close").click
     expect(page).to_not have_content "testing form"
@@ -153,6 +141,18 @@ describe "editing an existing form" do
     find(".update-button").click
     click_link "testing form"
     expect(page).to_not have_content "Github"
+  end
+
+  it "in house user can edit a form, update the title, and the edit will persist", :js => true do
+    click_link "testing form"
+    find("#text-select").click
+    fill_in "title", with: "I am an edited form title"
+    find("#add-to-ff").click
+    fill_in "Form Name", :with => "new form name"
+    expect(page).to have_content "I am an edited form"
+    find(".update-button").click
+    click_link "new form name"
+    expect(page).to have_content "I am an edited form title"
   end
 
 end
