@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'capybara/rails'
 
 
-describe "in order for both users to forge a contract together" do
+describe "in order for both users to forge a contract together", focus: true do
 
   before :each do
     @inhouse_user = InhouseUser.create(username: "kipperton",
@@ -29,7 +29,7 @@ describe "in order for both users to forge a contract together" do
     expect(page).to have_content "kipperton"
   end
 
-  it "external user can approve a contract request and an inhouse user can be notified" do
+  it "external user can approve a contract request and an inhouse user can seal the contract" do
     click_link "Request Contract"
     page.set_rack_session(:external_user_id => @external_user.id)
     visit ext_mainpage_path
@@ -37,11 +37,32 @@ describe "in order for both users to forge a contract together" do
     click_link "Send Contract"
     expect(page).to_not have_content "kipperton"
     page.set_rack_session(:inhouse_user_id => @inhouse_user.id)
+    visit inhouse_contracts_path
+    click_link "Approve Pending Contracts"
+    expect(page).to have_content "Approve Contract!"
+    click_link "Approve Contract!"
+    expect(page).to_not have_content "Approve Contract!"
   end
 
-
+  it "once a contract is in place an external user can view the jobs of their joined inhouse users" do
+    join = InhExtContract.create(ext_user_id:@external_user.id,
+                                 inh_user_id:@inhouse_user.id,
+                                 ext_accepted:true,
+                                 inh_accepted:true)
+    form = Form.create(title:"form",
+                       inh_user_id:@inhouse_user.id,
+                       json:[{"type"=>"text-area", "title"=>"Test"}])
+    job = Job.create(title:"poop scooper",
+                     description:"scoop the poop",
+                     location:"Westminster, CO",
+                     form_id:form.id,
+                     inh_user_id: @inhouse_user.id)
+    page.set_rack_session(:external_user_id => @external_user.id)
+    visit ext_mainpage_path
+    click_link "View Client Jobs"
+    expect(page).to have_content "poop scooper"
+    expect(page).to have_content "scoop the poop"
+    expect(page).to have_content "Westminster, CO"
+  end
 
 end
-    # visit external_contracts_path
-    # click_link "Approve Pending Contracts"
-    # click_link "Approve Contract!"

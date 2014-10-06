@@ -1,0 +1,8 @@
+<h1>Client Jobs</h1>
+  <% @jobs.each do |job| %>
+    <ul>
+      <li>Title: <%= job.title %></li>
+      <li>Description: <%= job.description %></li>
+      <li>Location: <%= job.location %></li>
+    </ul>
+  <% end %>

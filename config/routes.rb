@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :external_users
   resources :inhouse_users
   resources :jobs
+  get "ext_jobs" => "jobs#ext_index", as: "external_jobs"
   resources :forms
 
   get "inhouse_signin" => "inhouse_sessions#new", as: :inhouse_signin
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   get "view_pending_contracts" => "inh_ext_contracts#view_pending_contracts", as: "view_pending_contracts"
   post "/search_for_ext/:id" => "inh_ext_contracts#inh_create", as: "inh_request_contract"
   patch "ext_send_contract/:id" => "inh_ext_contracts#ext_send_contract", as: "ext_send_contract"
+  patch "inh_approve_contract/:id" => "inh_ext_contracts#inh_approve_contract", as: "inh_approve_contract"
 
   get "inh_mainpage" => "inh_mainpage#show"
   get "ext_mainpage" => "ext_mainpage#show"

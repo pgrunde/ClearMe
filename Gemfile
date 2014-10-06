@@ -23,7 +23,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "database_cleaner"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", '~> 2.43.0'
   gem "pry-byebug"
   gem "pry-rails"
 end

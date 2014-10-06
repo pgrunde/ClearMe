@@ -1,10 +1,12 @@
 class JobsController < ApplicationController
 
-  before_filter :ensure_authed_inhouse_user
 
   def index
     @jobs = Job.where(inh_user_id: current_inhouse_user.id)
-    # @jobs = Job.all
+  end
+
+  def ext_index
+    @jobs = ExternalUser.find_by(id: current_external_user.id).inhouse_users.where("inh_ext_contracts.ext_accepted = true AND inh_ext_contracts.inh_accepted = true").map {|inh| inh.jobs}.flatten
   end
 
   def new

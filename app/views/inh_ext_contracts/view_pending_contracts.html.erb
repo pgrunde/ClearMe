@@ -1,12 +1,13 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+<h1>View Pending Contracts</h1>
 <% if @externals %>
   <% @externals.each do |ext| %>
     <ul>
       <li><%= ext.username %></li>
       <li><%= ext.email %></li>
-      <li><%= link_to "Approve Contract!" %></li>
+      <li><%= link_to "Approve Contract!", inh_approve_contract_path(ext), method: :patch %></li>
     </ul>
   <% end %>
 <% end %>

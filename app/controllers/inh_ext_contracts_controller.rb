@@ -35,8 +35,15 @@ class InhExtContractsController < ApplicationController
     redirect_to external_contracts_path
   end
 
+  def inh_approve_contract
+    @contract = InhExtContract.find_by(ext_user_id: params["id"], inh_user_id: current_inhouse_user.id)
+    @contract.inh_accepted = true
+    @contract.save
+    redirect_to view_pending_contracts_path
+  end
+
   def view_pending_contracts
-    @externals = ExternalUser.joins(:inh_ext_contracts).where("inh_ext_contracts.ext_accepted = true")
+    @externals = ExternalUser.joins(:inh_ext_contracts).where("inh_ext_contracts.ext_accepted = true AND inh_ext_contracts.inh_accepted = false")
   end
 
   private
