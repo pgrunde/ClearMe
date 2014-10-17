@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930161329) do
+ActiveRecord::Schema.define(version: 20141015235113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidates", force: true do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "title"
+    t.string  "bio"
+    t.integer "cv_id"
+    t.string  "state"
+    t.integer "external_user_id"
+  end
 
   create_table "external_users", force: true do |t|
     t.string   "username"
@@ -55,6 +65,14 @@ ActiveRecord::Schema.define(version: 20140930161329) do
     t.integer  "inh_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "submitted_candidates", force: true do |t|
+    t.integer "job_id"
+    t.integer "candidate_id"
+    t.json    "form_json"
+    t.boolean "accepted"
+    t.string  "progress"
   end
 
 end

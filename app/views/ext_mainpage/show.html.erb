@@ -4,7 +4,7 @@
 <br>
 <h1>Welcome <%= @external.username %></h1>
 <ul>
-  <li><%= link_to "Manage Candidates" %></li>
+  <li><%= link_to "Manage Candidates", ext_candidate_mgmt_path %></li>
   <li><%= link_to "Pending Contract Requests", external_contracts_path %></li>
   <li><%= link_to "View Client Jobs", external_jobs_path %></li>
 </ul>

@@ -1,0 +1,33 @@
+<h2>Create New Candidate</h2>
+<%= form_for @candidate, url: ext_create_candidate_path(@candidate), method: :post do |f| %>
+  <% if @candidate.errors.any? %>
+    <ul>
+      <% @candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </p>
+
+  <%= f.submit "Create New Candidate" %>
+
+<% end %>

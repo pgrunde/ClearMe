@@ -1,8 +1,9 @@
 <h1>Client Jobs</h1>
-  <% @jobs.each do |job| %>
-    <ul>
-      <li>Title: <%= job.title %></li>
-      <li>Description: <%= job.description %></li>
-      <li>Location: <%= job.location %></li>
-    </ul>
-  <% end %>
+<% @jobs.each do |job| %>
+  <ul>
+    <li>Title: <%= job.title %></li>
+    <li>Description: <%= job.description %></li>
+    <li>Location: <%= job.location %></li>
+    <li><%= link_to "Submit a Candidate!", ext_submit_candidate_path(job) %></li>
+  </ul>
+<% end %>

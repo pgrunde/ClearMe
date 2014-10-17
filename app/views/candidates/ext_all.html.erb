@@ -1,0 +1,11 @@
+<h2>All Candidates</h2>
+<% @candidates.each do |candidate| %>
+  <ul>
+    <li><%= candidate.first_name %> <%= candidate.last_name %></li>
+    <li><%= candidate.title %></li>
+    <li><%= candidate.bio %></li>
+  </ul>
+<% end %>
+
+
+

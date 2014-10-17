@@ -1,0 +1,14 @@
+<h1></h1>
+<ul>
+  <li>Title: <%= @job.title %></li>
+  <li>Description: <%= @job.description %></li>
+  <li>Location: <%= @job.location %></li>
+</ul>
+<label for="candidate-submit-form">Select Candidate</label>
+<select name="candidate" id="candidate-submit-select">
+  <%= @candidates.each do |candidate| %>
+    <option value="<%= candidate.id %>"><%= candidate.first_name %></option>
+  <% end %>
+</select>
+<div id="candidate-submit-form"></div>
+<%= javascript_include_tag "form_submit" %>

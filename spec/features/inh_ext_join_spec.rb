@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'capybara/rails'
 
 
-describe "in order for both users to forge a contract together", focus: true do
+describe "in order for both users to forge a contract together" do
 
   before :each do
     @inhouse_user = InhouseUser.create(username: "kipperton",

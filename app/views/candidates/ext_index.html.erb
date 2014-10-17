@@ -1,0 +1,8 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<h2>Manage Candidates</h2>
+<ul>
+  <li><%= link_to "Create New Candidate", ext_new_candidate_path %></li>
+  <li><%= link_to "View All Candidates", ext_all_candidates_path %></li>
+</ul>
